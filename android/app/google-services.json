@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:162056553386:android:d7eadeba32573ad419e1d3",
+        "android_client_info": {
+          "package_name": "com.NicksetCompany.chatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "162056553386-95u2euo5uo2c3b2tfr7n6l29hotf6f52.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdLS3LbJFPk-YTOD6tBF2dEKssICwVXoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "162056553386-95u2euo5uo2c3b2tfr7n6l29hotf6f52.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:162056553386:android:8a26115a1493d1e019e1d3",
         "android_client_info": {
           "package_name": "com.example.chatapp"
