@@ -26,11 +26,13 @@ class _ChatState extends State<Chat> {
         'from': widget.user.email,
         'date': DateTime.now().toIso8601String().toString(),
       });
-      scrollController.animateTo(
+      if(scrollController.hasClients){
+        scrollController.animateTo(
         scrollController.position.maxScrollExtent,
         curve: Curves.easeOut,
         duration: const Duration(milliseconds: 300),
       );
+      }
       //messageController.clear();
     }
   }
