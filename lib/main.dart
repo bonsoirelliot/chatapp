@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'home_page.dart';
-import 'registration_page.dart';
 import 'login_page.dart';
 import 'chat_page.dart';
 
@@ -16,7 +15,6 @@ class MyApp extends StatelessWidget {
       initialRoute: HomePage.id,
       routes: {
         HomePage.id: (context) => HomePage(),
-        Registration.id: (context) => Registration(),
         Login.id: (context) => Login(),
         Chat.id: (context) => Chat(),
       },

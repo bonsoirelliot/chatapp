@@ -10,22 +10,18 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  String email;
-  String password;
+  String uname; //username
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> loginUser() async {
-    AuthResult user = await _auth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
+    AuthResult user = await _auth.signInAnonymously();
 
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => Chat(
-          user: user.user,
+          username: uname,
         ),
       ),
     );
@@ -36,7 +32,7 @@ class _LoginState extends State<Login> {
     return Scaffold(
       backgroundColor: Colors.blue[100],
       appBar: AppBar(
-        title: Text("авторизуция"),
+        title: Text("Login Page"),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -51,8 +47,11 @@ class _LoginState extends State<Login> {
                   child: Container(
                     width: 100.0,
                     height: 100.0,
-                    child: Image.asset(
-                      "assets/images/logo.png",
+                    child: CircleAvatar(
+                      child: Text(
+                        "N",
+                        textScaleFactor: 3,
+                      ),
                     ),
                   ),
                 ),
@@ -60,29 +59,25 @@ class _LoginState extends State<Login> {
             ),
           ),
           TextField(
-            keyboardType: TextInputType.emailAddress,
-            onChanged: (value) => email = value,
+            onChanged: (value) => uname = value,
             decoration: InputDecoration(
-              hintText: 'e-mail',
-              border: const OutlineInputBorder(),
-            ),
-          ),
-          SizedBox(height: 40.0),
-          TextField(
-            autocorrect: false,
-            obscureText: true,
-            onChanged: (value) => password = value,
-            decoration: InputDecoration(
-              hintText: 'пароль',
-              border: const OutlineInputBorder(),
+              hintText: 'Enter username',
+              border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
             ),
           ),
           CustomButton(
-            text: "Логен",
+            text: "Enter the chat",
             callback: () async {
               await loginUser();
             },
-          )
+          ),
+          SizedBox(
+            height: 50,
+          ),
         ],
       ),
     );

@@ -1,4 +1,3 @@
-import 'package:chatapp/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'custom_button.dart';
@@ -21,7 +20,12 @@ class HomePage extends StatelessWidget {
                 child: Container(
                   width: 110.0,
                   height: 100.0,
-                  child: Image.asset('assets/images/logo.png'),
+                  child: CircleAvatar(
+                    child: Text(
+                      "N",
+                      textScaleFactor: 3,
+                    ),
+                  ),
                 ),
               ),
               Text(
@@ -34,15 +38,9 @@ class HomePage extends StatelessWidget {
             height: 100.0,
           ),
           CustomButton(
-            text: "Log In",
+            text: "Enter the chat",
             callback: () {
               Navigator.of(context).pushNamed(Login.id);
-            },
-          ),
-          CustomButton(
-            text: "Register",
-            callback: () {
-              Navigator.of(context).pushNamed(Registration.id);
             },
           ),
         ],

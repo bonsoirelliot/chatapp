@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 class Chat extends StatefulWidget {
   static const String id = 'CHAT';
 
-  final FirebaseUser user;
+  final String username;
 
-  const Chat({Key key, this.user}) : super(key: key);
+  const Chat({Key key, this.username}) : super(key: key);
   @override
   _ChatState createState() => _ChatState();
 }
@@ -23,16 +23,14 @@ class _ChatState extends State<Chat> {
     if (messageController.text.length > 0) {
       await _firestore.collection('messages').add({
         'text': messageController.text,
-        'from': widget.user.email,
+        'from': widget.username,
         'date': DateTime.now().toIso8601String().toString(),
       });
-      if(scrollController.hasClients){
-        scrollController.animateTo(
+      scrollController.animateTo(
         scrollController.position.maxScrollExtent,
         curve: Curves.easeOut,
         duration: const Duration(milliseconds: 300),
       );
-      }
       //messageController.clear();
     }
   }
@@ -83,7 +81,7 @@ class _ChatState extends State<Chat> {
                     .map((doc) => Message(
                           from: doc.data['from'],
                           text: doc.data['text'],
-                          me: widget.user.email == doc.data['from'],
+                          me: widget.username == doc.data['from'],
                         ))
                     .toList();
 
@@ -107,7 +105,11 @@ class _ChatState extends State<Chat> {
                     },
                     decoration: InputDecoration(
                       hintText: 'Ваше драгоценное послание',
-                      border: const OutlineInputBorder(),
+                      border: const OutlineInputBorder(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(50),
+                        ),
+                      ),
                     ),
                     controller: messageController,
                   ),
@@ -161,15 +163,19 @@ class Message extends StatelessWidget {
           children: <Widget>[
             Text(
               from,
+              style: TextStyle(color: Colors.black87),
             ),
             Material(
-              color: me ? Colors.teal : Colors.red,
-              borderRadius: BorderRadius.circular(10.0),
+              color: me ? Colors.blue[300] : Colors.grey[100],
+              borderRadius: BorderRadius.circular(20.0),
               elevation: 6.0,
               child: Container(
                 padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                 child: Text(
                   text,
+                  style: me
+                      ? TextStyle(color: Colors.grey[100])
+                      : TextStyle(color: Colors.black87),
                 ),
               ),
             )
